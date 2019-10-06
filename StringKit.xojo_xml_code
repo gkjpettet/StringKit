@@ -400,6 +400,35 @@
   <ItemParams></ItemParams>
   <ItemResult></ItemResult>
  </Method>
+ <Method>
+  <ItemName>Chop</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Removes the requested number of characters from a String.</CodeDescription>
+  <PartID>1676558335</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Chop(s As String, numChars As Integer = 1) As String</SourceLine>
+   <SourceLine>/// Removes the specified number of characters from the passed string (default 1).</SourceLine>
+   <SourceLine>/// If `numChars` is greater than the length of the string, an empty string is returned.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var length As Integer = s.Length</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If numChars &lt; 1 Or numChars &gt; length Then</SourceLine>
+   <SourceLine>Return ""</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return s.Left(length - numChars)</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>s As String, numChars As Integer = 1</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
  <Property>
   <ItemName>mCodePointCategoryDictionary</ItemName>
   <Compatibility></Compatibility>
