@@ -429,6 +429,32 @@
   <ItemParams>s As String, numChars As Integer = 1</ItemParams>
   <ItemResult>String</ItemResult>
  </Method>
+ <Method>
+  <ItemName>ReplaceInvisibleCharacters</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Replaces certain invisible characters with a visible representation.</CodeDescription>
+  <PartID>977149951</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ReplaceInvisibleCharacters(s As String) As String</SourceLine>
+   <SourceLine>/// Replaces certain invisible characters with a visible representation.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>s = s.ReplaceAll(&amp;u0009, "→")</SourceLine>
+   <SourceLine>s = s.ReplaceAll(&amp;u000A, "⮐")</SourceLine>
+   <SourceLine>s = s.ReplaceAll(&amp;u0020, "•")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return s</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>s As String</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
  <Property>
   <ItemName>mCodePointCategoryDictionary</ItemName>
   <Compatibility></Compatibility>
