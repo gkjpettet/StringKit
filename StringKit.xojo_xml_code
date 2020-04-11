@@ -455,6 +455,29 @@
   <ItemParams>s As String</ItemParams>
   <ItemResult>String</ItemResult>
  </Method>
+ <Method>
+  <ItemName>IsLetterDigitOrUnderscore</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Determines whether a character is a letter or a digit.</CodeDescription>
+  <PartID>467472383</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsLetterDigitOrUnderscore(s As String) As Boolean</SourceLine>
+   <SourceLine>/// Determines whether a character is a letter, a digit or an underscore.</SourceLine>
+   <SourceLine>/// - Notes: Based on code from .NET core: </SourceLine>
+   <SourceLine>/// https://github.com/microsoft/referencesource/blob/master/mscorlib/system/char.cs</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return CheckLetterOrDigit(GetUnicodeCategory(s)) Or s = "_"</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>s As String</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
  <Property>
   <ItemName>mCodePointCategoryDictionary</ItemName>
   <Compatibility></Compatibility>
