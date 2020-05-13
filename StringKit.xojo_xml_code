@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2019r3.1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="257574911">
  <ObjName>StringKit</ObjName>
  <ObjContainerID>0</ObjContainerID>
@@ -477,6 +477,195 @@
   <IsShared>0</IsShared>
   <ItemParams>s As String</ItemParams>
   <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsLowercaseCharacter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the passed character is lowercase.</CodeDescription>
+  <PartID>1857341439</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsLowercaseCharacter(character As String) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the passed character is lowercase.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter character: The character to check.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' Assumes that `character` is one character long.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If IsLatin1(character) Then</SourceLine>
+   <SourceLine>If IsASCII(character) Then</SourceLine>
+   <SourceLine>Return Asc(character) &gt;= 97 And Asc(character) &lt;= 122</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Return GetLatin1UnicodeCharacter(character) = UnicodeCategories.LowercaseLetter</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return GetUnicodeCategory(character) = UnicodeCategories.LowercaseLetter</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>character As String</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsASCII</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the passed character is in the ASCII range.</CodeDescription>
+  <PartID>652861439</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsASCII(character As String) As Boolean</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns True if the passed character is in the ASCII range.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter character: The character to test.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Assumes that `character` is one character in length.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Asc(character) &lt;= &amp;h007F</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>character As String</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsLatin1</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True for if the passed character is in the ASCII or Latin-1 supplement range.</CodeDescription>
+  <PartID>871088127</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsLatin1(character As String) As Boolean</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>' Returns True for if the passed character is in the ASCII or Latin-1 supplement range.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter character: The character to test.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Note: Assumes that `character` is one character in length.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return Asc(character) &lt;= &amp;h00FF</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>character As String</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetLatin1UnicodeCharacter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the Unicode category for Unicode characters &lt;= 0x00ff.</CodeDescription>
+  <PartID>885233663</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function GetLatin1UnicodeCharacter(character As String) As StringKit.UnicodeCategories</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the Unicode category for Unicode characters &lt;= 0x00ff.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter character: The character to get the unicode category for.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' Assumes that `character` is one character long.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If Not IsLatin1(character) Then</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException("The Asc value of the passed character should be &lt;= &amp;h007F")</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return CategoryForLatin1(Asc(character))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>character As String</ItemParams>
+  <ItemResult>StringKit.UnicodeCategories</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CategoryForLatin1</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the Unicode category for a latin1 character.</CodeDescription>
+  <PartID>774584319</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CategoryForLatin1(codePoint As Integer) As StringKit.UnicodeCategories</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>' Returns the Unicode category for a latin1 character.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Parameter codePoint: The Unicode codepoint of the character to get the category for.</SourceLine>
+   <SourceLine>'</SourceLine>
+   <SourceLine>' - Notes:</SourceLine>
+   <SourceLine>' Assumes that `codePoint` is within the range U+0000 and U+00FF.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Static latin1Categories() As StringKit.UnicodeCategories = Array(_</SourceLine>
+   <SourceLine>UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, _</SourceLine>
+   <SourceLine>UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, _</SourceLine>
+   <SourceLine>UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, _</SourceLine>
+   <SourceLine>UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, _</SourceLine>
+   <SourceLine>UnicodeCategories.SpaceSeparator, UnicodeCategories.OtherPunctuation, UnicodeCategories.OtherPunctuation, UnicodeCategories.OtherPunctuation, UnicodeCategories.CurrencySymbol, UnicodeCategories.OtherPunctuation, UnicodeCategories.OtherPunctuation, UnicodeCategories.OtherPunctuation, _</SourceLine>
+   <SourceLine>UnicodeCategories.OpenPunctuation, UnicodeCategories.ClosePunctuation, UnicodeCategories.OtherPunctuation, UnicodeCategories.MathSymbol, UnicodeCategories.OtherPunctuation, UnicodeCategories.DashPunctuation, UnicodeCategories.OtherPunctuation, UnicodeCategories.OtherPunctuation, _</SourceLine>
+   <SourceLine>UnicodeCategories.DecimalDigitNumber, UnicodeCategories.DecimalDigitNumber, UnicodeCategories.DecimalDigitNumber, UnicodeCategories.DecimalDigitNumber, UnicodeCategories.DecimalDigitNumber, UnicodeCategories.DecimalDigitNumber, UnicodeCategories.DecimalDigitNumber, UnicodeCategories.DecimalDigitNumber, _</SourceLine>
+   <SourceLine>UnicodeCategories.DecimalDigitNumber, UnicodeCategories.DecimalDigitNumber, UnicodeCategories.OtherPunctuation, UnicodeCategories.OtherPunctuation, UnicodeCategories.MathSymbol, UnicodeCategories.MathSymbol, UnicodeCategories.MathSymbol, UnicodeCategories.OtherPunctuation, _</SourceLine>
+   <SourceLine>UnicodeCategories.OtherPunctuation, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, _</SourceLine>
+   <SourceLine>UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, _</SourceLine>
+   <SourceLine>UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, _</SourceLine>
+   <SourceLine>UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.OpenPunctuation, UnicodeCategories.OtherPunctuation, UnicodeCategories.ClosePunctuation, UnicodeCategories.ModifierSymbol, UnicodeCategories.ConnectorPunctuation, _</SourceLine>
+   <SourceLine>UnicodeCategories.ModifierSymbol, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, _</SourceLine>
+   <SourceLine>UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, _</SourceLine>
+   <SourceLine>UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, _</SourceLine>
+   <SourceLine>UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.OpenPunctuation, UnicodeCategories.MathSymbol, UnicodeCategories.ClosePunctuation, UnicodeCategories.MathSymbol, UnicodeCategories.Control, _</SourceLine>
+   <SourceLine>UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, _</SourceLine>
+   <SourceLine>UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, _</SourceLine>
+   <SourceLine>UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, _</SourceLine>
+   <SourceLine>UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, _</SourceLine>
+   <SourceLine>UnicodeCategories.SpaceSeparator, UnicodeCategories.OtherPunctuation, UnicodeCategories.CurrencySymbol, UnicodeCategories.CurrencySymbol, UnicodeCategories.CurrencySymbol, UnicodeCategories.CurrencySymbol, UnicodeCategories.OtherSymbol, UnicodeCategories.OtherSymbol, _</SourceLine>
+   <SourceLine>UnicodeCategories.ModifierSymbol, UnicodeCategories.OtherSymbol, UnicodeCategories.LowercaseLetter, UnicodeCategories.InitialQuotePunctuation, UnicodeCategories.MathSymbol, UnicodeCategories.DashPunctuation, UnicodeCategories.OtherSymbol, UnicodeCategories.ModifierSymbol, _</SourceLine>
+   <SourceLine>UnicodeCategories.OtherSymbol, UnicodeCategories.MathSymbol, UnicodeCategories.OtherNumber, UnicodeCategories.OtherNumber, UnicodeCategories.ModifierSymbol, UnicodeCategories.LowercaseLetter, UnicodeCategories.OtherSymbol, UnicodeCategories.OtherPunctuation, _</SourceLine>
+   <SourceLine>UnicodeCategories.ModifierSymbol, UnicodeCategories.OtherNumber, UnicodeCategories.LowercaseLetter, UnicodeCategories.FinalQuotePunctuation, UnicodeCategories.OtherNumber, UnicodeCategories.OtherNumber, UnicodeCategories.OtherNumber, UnicodeCategories.OtherPunctuation, _</SourceLine>
+   <SourceLine>UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, _</SourceLine>
+   <SourceLine>UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, _</SourceLine>
+   <SourceLine>UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.MathSymbol, _</SourceLine>
+   <SourceLine>UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.UppercaseLetter, UnicodeCategories.LowercaseLetter, _</SourceLine>
+   <SourceLine>UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, _</SourceLine>
+   <SourceLine>UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, _</SourceLine>
+   <SourceLine>UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.MathSymbol, _</SourceLine>
+   <SourceLine>UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter, UnicodeCategories.LowercaseLetter _</SourceLine>
+   <SourceLine>)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return latin1Categories(codePoint)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>codePoint As Integer</ItemParams>
+  <ItemResult>StringKit.UnicodeCategories</ItemResult>
  </Method>
  <Property>
   <ItemName>mCodePointCategoryDictionary</ItemName>
