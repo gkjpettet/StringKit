@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2020r1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2021r1.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="257574911">
  <ObjName>StringKit</ObjName>
  <ObjContainerID>0</ObjContainerID>
@@ -75,14 +75,14 @@
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetUnicodeCategory(s As String) As StringKit.UnicodeCategories</SourceLine>
    <SourceLine>/// Returns the Unicode category that the passed character belongs to.</SourceLine>
+   <SourceLine>///</SourceLine>
    <SourceLine>/// - Notes:</SourceLine>
-   <SourceLine>/// If the passed string is empty or is more than one character in length then we return </SourceLine>
-   <SourceLine>/// a special `None` category.</SourceLine>
-   <SourceLine>/// Assumes that StringKit has been initialised prior to calling this method.</SourceLine>
+   <SourceLine>/// If the passed string is empty or is more than one character in length then </SourceLine>
+   <SourceLine>/// we return a special `None` category.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If s.Length &lt;&gt; 1 Then Return UnicodeCategories.None</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>Return mCodePointCategoryDictionary.Lookup(s.Asc, UnicodeCategories.None)</SourceLine>
+   <SourceLine>Return CodePointCategoryDictionary.Lookup(s.Asc, UnicodeCategories.None)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
@@ -92,28 +92,6 @@
   <IsShared>0</IsShared>
   <ItemParams>s As String</ItemParams>
   <ItemResult>StringKit.UnicodeCategories</ItemResult>
- </Method>
- <Method>
-  <ItemName>Initialise</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <PartID>679102463</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub Initialise()</SourceLine>
-   <SourceLine>If mInitialised Then Return</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>InitialiseCodepointCategoryDictionary</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>mInitialised = True</SourceLine>
-   <SourceLine>End Sub</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
-  <IsShared>0</IsShared>
-  <ItemParams></ItemParams>
-  <ItemResult></ItemResult>
  </Method>
  <Method>
   <ItemName>IsBinaryDigit</ItemName>
@@ -295,17 +273,20 @@
   <ItemName>InitialiseCodepointCategoryDictionary</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Returns a dictionary mapping unicode codepoints to unicode categories.</CodeDescription>
   <PartID>1974349823</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub InitialiseCodepointCategoryDictionary()</SourceLine>
-   <SourceLine>mCodePointCategoryDictionary = New Dictionary</SourceLine>
+   <SourceLine>Function InitialiseCodepointCategoryDictionary() As Dictionary</SourceLine>
+   <SourceLine>/// Returns a dictionary mapping unicode codepoints to unicode categories.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>/// - Notes:</SourceLine>
+   <SourceLine>/// `kUnicodeCodepointCategoryPairs` contains parsed data from the Unicode </SourceLine>
+   <SourceLine>/// standard where each line represents a codepoint/category pairing.</SourceLine>
+   <SourceLine>/// Each line is in the format: `codepoint:category` where `codepoint` is a </SourceLine>
+   <SourceLine>/// hex value codepoint and `category` is a two character category.</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>// `kUnicodeCodepointCategoryPairs` contains parsed data from the Unicode standard where </SourceLine>
-   <SourceLine>// each line represents a codepoint/category pairing.</SourceLine>
-   <SourceLine>// Each line is in the format:</SourceLine>
-   <SourceLine>// codepoint:category</SourceLine>
-   <SourceLine>// where `codepoint` is a hex value codepoint and `category` is a two character category.</SourceLine>
+   <SourceLine>Var d As New Dictionary</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Make sure there's no weirdness around line endings.</SourceLine>
    <SourceLine>Var keyValues() As String</SourceLine>
@@ -384,21 +365,24 @@
    <SourceLine>Case "Cn"</SourceLine>
    <SourceLine>value = UnicodeCategories.OtherNotAssigned</SourceLine>
    <SourceLine>Else</SourceLine>
-   <SourceLine>Raise New UnsupportedFormatException("The unicode category data is in an invalid format")</SourceLine>
+   <SourceLine>Raise New UnsupportedFormatException("The unicode category data is in " + _</SourceLine>
+   <SourceLine>"an invalid format")</SourceLine>
    <SourceLine>End Select</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Assign this key-value pair to the dictionary.</SourceLine>
-   <SourceLine>mCodePointCategoryDictionary.Value(key) = value</SourceLine>
+   <SourceLine>d.Value(key) = value</SourceLine>
    <SourceLine>Next kv</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>End Sub</SourceLine>
+   <SourceLine>Return d</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>33</ItemFlags>
   <IsShared>0</IsShared>
   <ItemParams></ItemParams>
-  <ItemResult></ItemResult>
+  <ItemResult>Dictionary</ItemResult>
  </Method>
  <Method>
   <ItemName>Chop</ItemName>
@@ -409,8 +393,9 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function Chop(s As String, numChars As Integer = 1) As String</SourceLine>
-   <SourceLine>/// Removes the specified number of characters from the passed string (default 1).</SourceLine>
-   <SourceLine>/// If `numChars` is greater than the length of the string, an empty string is returned.</SourceLine>
+   <SourceLine>/// Removes the specified number of characters from the passed string.</SourceLine>
+   <SourceLine>/// If `numChars` is greater than the length of the string, an empty </SourceLine>
+   <SourceLine>/// string is returned.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var length As Integer = s.Length</SourceLine>
    <SourceLine></SourceLine>
@@ -579,17 +564,16 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetLatin1UnicodeCharacter(character As String) As StringKit.UnicodeCategories</SourceLine>
+   <SourceLine>/// Returns the Unicode category for Unicode characters &lt;= 0x00ff.</SourceLine>
    <SourceLine>///</SourceLine>
-   <SourceLine>' Returns the Unicode category for Unicode characters &lt;= 0x00ff.</SourceLine>
-   <SourceLine>'</SourceLine>
-   <SourceLine>' - Parameter character: The character to get the unicode category for.</SourceLine>
-   <SourceLine>'</SourceLine>
-   <SourceLine>' - Notes:</SourceLine>
-   <SourceLine>' Assumes that `character` is one character long.</SourceLine>
+   <SourceLine>/// - [character]: The character to get the unicode category for.</SourceLine>
    <SourceLine>///</SourceLine>
+   <SourceLine>/// - Notes:</SourceLine>
+   <SourceLine>/// - Assumes that `character` is one character long.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If Not IsLatin1(character) Then</SourceLine>
-   <SourceLine>Raise New InvalidArgumentException("The Asc value of the passed character should be &lt;= &amp;h007F")</SourceLine>
+   <SourceLine>Raise New InvalidArgumentException("The Asc value of the passed " + _</SourceLine>
+   <SourceLine>"character should be &lt;= &amp;h007F")</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return CategoryForLatin1(Asc(character))</SourceLine>
@@ -612,14 +596,12 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function CategoryForLatin1(codePoint As Integer) As StringKit.UnicodeCategories</SourceLine>
+   <SourceLine>/// Returns the Unicode category for a latin1 character.</SourceLine>
    <SourceLine>///</SourceLine>
-   <SourceLine>' Returns the Unicode category for a latin1 character.</SourceLine>
-   <SourceLine>'</SourceLine>
-   <SourceLine>' - Parameter codePoint: The Unicode codepoint of the character to get the category for.</SourceLine>
-   <SourceLine>'</SourceLine>
-   <SourceLine>' - Notes:</SourceLine>
-   <SourceLine>' Assumes that `codePoint` is within the range U+0000 and U+00FF.</SourceLine>
-   <SourceLine>///</SourceLine>
+   <SourceLine>/// - [codePoint]: The Unicode codepoint of the character to get the </SourceLine>
+   <SourceLine>///                category for.</SourceLine>
+   <SourceLine>/// - Notes:</SourceLine>
+   <SourceLine>/// Assumes that `codePoint` is within the range U+0000 and U+00FF.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Static latin1Categories() As StringKit.UnicodeCategories = Array(_</SourceLine>
    <SourceLine>UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, _</SourceLine>
@@ -668,34 +650,34 @@
   <ItemResult>StringKit.UnicodeCategories</ItemResult>
  </Method>
  <Property>
-  <ItemName>mCodePointCategoryDictionary</ItemName>
+  <ItemName>CodePointCategoryDictionary</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <PartID>369692671</PartID>
+  <CodeDescription>Key = Unicode codepoint, Value = Unicode category.</CodeDescription>
+  <PartID>958326783</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>mCodePointCategoryDictionary As Dictionary</SourceLine>
+   <SourceLine>CodePointCategoryDictionary As Dictionary</SourceLine>
    <SourceLine></SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>mCodePointCategoryDictionary As Dictionary</ItemDeclaration>
+  <ItemDeclaration>CodePointCategoryDictionary As Dictionary</ItemDeclaration>
   <ItemFlags>33</ItemFlags>
   <IsShared>0</IsShared>
- </Property>
- <Property>
-  <ItemName>mInitialised</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <PartID>2075840511</PartID>
-  <ItemSource>
+  <SetAccessor>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>mInitialised As Boolean = False</SourceLine>
+   <SourceLine>Set</SourceLine>
    <SourceLine></SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <ItemDeclaration>mInitialised As Boolean = False</ItemDeclaration>
-  <ItemFlags>33</ItemFlags>
-  <IsShared>0</IsShared>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>Static d As Dictionary = InitialiseCodepointCategoryDictionary</SourceLine>
+   <SourceLine>Return d</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
  </Property>
  <ViewBehavior>
   <ViewProperty>
