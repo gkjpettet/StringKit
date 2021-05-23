@@ -67,6 +67,8 @@ Inherits TestGroup
 		  Assert.IsFalse(StringKit.GetUnicodeCategory("a") = _
 		  StringKit.UnicodeCategories.DecimalDigitNumber)
 		  
+		  #Pragma Warning "TODO: Finish"
+		  
 		End Sub
 	#tag EndMethod
 

@@ -124,6 +124,9 @@
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function IsDigit(s As String) As Boolean</SourceLine>
    <SourceLine>/// Returns True if the passed string is a single digit in the range 0-9.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>/// - Notes:</SourceLine>
+   <SourceLine>/// We could use `GetUnicodeCategory()` but a select...case is much faster.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Select Case s</SourceLine>
    <SourceLine>Case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"</SourceLine>
