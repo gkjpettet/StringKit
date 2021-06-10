@@ -856,9 +856,7 @@ Begin Window UnitTestsWindow
       InitialParent   =   ""
       LockedInPosition=   False
       Scope           =   0
-      TabIndex        =   3
       TabPanelIndex   =   0
-      TabStop         =   True
       Visible         =   True
    End
    Begin DesktopTestController Controller
@@ -876,9 +874,7 @@ Begin Window UnitTestsWindow
       RunTestCount    =   0
       Scope           =   2
       SkippedCount    =   0
-      TabIndex        =   4
       TabPanelIndex   =   0
-      TabStop         =   True
    End
    Begin ProgressWheel ProgressWheel1
       AllowAutoDeactivate=   True

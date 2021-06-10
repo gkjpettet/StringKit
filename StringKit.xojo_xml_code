@@ -11,12 +11,12 @@
   <ItemName>CheckLetter</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Checks if the specified UnicodeCategory belongs to the letter category.</CodeDescription>
+  <CodeDescription>Checks if [uc] belongs to the letter category.</CodeDescription>
   <PartID>761077759</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function CheckLetter(uc As StringKit.UnicodeCategories) As Boolean</SourceLine>
-   <SourceLine>/// Checks if the specified UnicodeCategory belongs to the letter category.</SourceLine>
+   <SourceLine>/// Checks if [uc] belongs to the letter category.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Select Case uc</SourceLine>
    <SourceLine>Case UnicodeCategories.UppercaseLetter, UnicodeCategories.LowercaseLetter, _</SourceLine>
@@ -40,12 +40,12 @@
   <ItemName>CheckLetterOrDigit</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Checks if the specified UnicodeCategory belongs to the letter or digit categories.</CodeDescription>
+  <CodeDescription>Checks if [uc] belongs to the letter or digit categories.</CodeDescription>
   <PartID>1325117439</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function CheckLetterOrDigit(uc As StringKit.UnicodeCategories) As Boolean</SourceLine>
-   <SourceLine>/// Checks if the specified UnicodeCategory belongs to the letter or digit categories.</SourceLine>
+   <SourceLine>/// Checks if [uc] belongs to the letter or digit categories.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Select Case uc</SourceLine>
    <SourceLine>Case UnicodeCategories.UppercaseLetter, UnicodeCategories.LowercaseLetter, _</SourceLine>
@@ -69,15 +69,14 @@
   <ItemName>GetUnicodeCategory</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Returns the Unicode category that the passed character belongs to.</CodeDescription>
+  <CodeDescription>Returns the Unicode category that [s] belongs to.</CodeDescription>
   <PartID>1492492287</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetUnicodeCategory(s As String) As StringKit.UnicodeCategories</SourceLine>
-   <SourceLine>/// Returns the Unicode category that the passed character belongs to.</SourceLine>
+   <SourceLine>/// Returns the Unicode category that [s] belongs to.</SourceLine>
    <SourceLine>///</SourceLine>
-   <SourceLine>/// - Notes:</SourceLine>
-   <SourceLine>/// If the passed string is empty or is more than one character in length then </SourceLine>
+   <SourceLine>/// If [s] is empty or is more than one character in length then </SourceLine>
    <SourceLine>/// we return a special `None` category.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If s.Length &lt;&gt; 1 Then Return UnicodeCategories.None</SourceLine>
@@ -97,12 +96,12 @@
   <ItemName>IsBinaryDigit</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Returns True if the passed character is `0` or `1`.</CodeDescription>
+  <CodeDescription>Returns True if [s] is `0` or `1`.</CodeDescription>
   <PartID>1577959423</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function IsBinaryDigit(s As String) As Boolean</SourceLine>
-   <SourceLine>/// Returns True if the passed character is `0` or `1`.</SourceLine>
+   <SourceLine>/// Returns True if [s] is `0` or `1`.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If s.Length &lt;&gt; 1 Then Return False</SourceLine>
    <SourceLine>Return If(s = "0" Or s = "1", True, False)</SourceLine>
@@ -119,14 +118,14 @@
   <ItemName>IsDigit</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Returns True if [s] is a single digit in the range 0-9.</CodeDescription>
   <PartID>756819967</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function IsDigit(s As String) As Boolean</SourceLine>
-   <SourceLine>/// Returns True if the passed string is a single digit in the range 0-9.</SourceLine>
+   <SourceLine>/// Returns True if [s] is a single digit in the range 0-9.</SourceLine>
    <SourceLine>///</SourceLine>
-   <SourceLine>/// - Notes:</SourceLine>
-   <SourceLine>/// We could use `GetUnicodeCategory()` but a select...case is much faster.</SourceLine>
+   <SourceLine>/// We could use [GetUnicodeCategory] but a `select...case` is faster.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Select Case s</SourceLine>
    <SourceLine>Case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"</SourceLine>
@@ -134,8 +133,6 @@
    <SourceLine>Else</SourceLine>
    <SourceLine>Return False</SourceLine>
    <SourceLine>End Select</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine></SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
@@ -150,12 +147,12 @@
   <ItemName>IsHexDigit</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Returns True if the passed character is a valid hexadecimal digit (0-9, a-f, A-F).</CodeDescription>
+  <CodeDescription>Returns True if [s] is a valid hexadecimal digit (0-9, a-f, A-F).</CodeDescription>
   <PartID>1465575423</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function IsHexDigit(s As String) As Boolean</SourceLine>
-   <SourceLine>/// Returns True if the passed character is a valid hexadecimal digit (0-9, a-f, A-F).</SourceLine>
+   <SourceLine>/// Returns True if [s] is a valid hexadecimal digit (0-9, a-f, A-F).</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If s.Length &lt;&gt; 1 Then Return False</SourceLine>
    <SourceLine></SourceLine>
@@ -183,13 +180,14 @@
   <ItemName>IsLetter</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Determines whether a character is a letter.</CodeDescription>
+  <CodeDescription>Determines whether [s] is a letter.</CodeDescription>
   <PartID>1284841471</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function IsLetter(s As String) As Boolean</SourceLine>
-   <SourceLine>/// Determines whether a character is a letter.</SourceLine>
-   <SourceLine>/// - Notes: Based on code from .NET core: </SourceLine>
+   <SourceLine>/// Determines whether [s] is a letter.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>/// Based on code from .NET core: </SourceLine>
    <SourceLine>/// https://github.com/microsoft/referencesource/blob/master/mscorlib/system/char.cs</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return CheckLetter(GetUnicodeCategory(s))</SourceLine>
@@ -206,16 +204,18 @@
   <ItemName>IsLetterOrDigit</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Determines whether a character is a letter or a digit.</CodeDescription>
+  <CodeDescription>Determines whether [s] is a letter or a digit.</CodeDescription>
   <PartID>2039463935</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function IsLetterOrDigit(s As String) As Boolean</SourceLine>
-   <SourceLine>/// Determines whether a character is a letter or a digit.</SourceLine>
-   <SourceLine>/// - Notes: Based on code from .NET core: </SourceLine>
+   <SourceLine>/// Determines whether [s] is a letter or a digit.</SourceLine>
+   <SourceLine>/// </SourceLine>
+   <SourceLine>/// Based on code from .NET core: </SourceLine>
    <SourceLine>/// https://github.com/microsoft/referencesource/blob/master/mscorlib/system/char.cs</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return CheckLetterOrDigit(GetUnicodeCategory(s))</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -229,23 +229,24 @@
   <ItemName>IsWhiteSpace</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Returns True if [s] is Unicode whitespace.</CodeDescription>
   <PartID>1548318719</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function IsWhiteSpace(s As String) As Boolean</SourceLine>
-   <SourceLine>/// Returns True if the passed character is Unicode whitespace.</SourceLine>
-   <SourceLine>/// - Notes:</SourceLine>
-   <SourceLine>/// Assumes `s` is a single character. `String.Asc` returns the codepoint for </SourceLine>
-   <SourceLine>/// the first character in `s` so if this method is passed a string comprising </SourceLine>
-   <SourceLine>/// more than one character, it may </SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>// U+0009 = &lt;control&gt; HORIZONTAL TAB</SourceLine>
-   <SourceLine>// U+000a = &lt;control&gt; LINE FEED</SourceLine>
-   <SourceLine>// U+000b = &lt;control&gt; VERTICAL TAB</SourceLine>
-   <SourceLine>// U+000c = &lt;contorl&gt; FORM FEED</SourceLine>
-   <SourceLine>// U+000d = &lt;control&gt; CARRIAGE RETURN</SourceLine>
-   <SourceLine>// U+0085 = &lt;control&gt; NEXT LINE</SourceLine>
-   <SourceLine>// U+00a0 = NO-BREAK SPACE</SourceLine>
+   <SourceLine>/// Returns True if [s] is Unicode whitespace.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>/// Assumes [s] is a single character. [String.Asc] returns the </SourceLine>
+   <SourceLine>/// codepoint for the first character in [s] so if this method is passed </SourceLine>
+   <SourceLine>/// a string comprising more than one character, it'll break.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>/// &amp;u0009 = &lt;control&gt; HORIZONTAL TAB</SourceLine>
+   <SourceLine>/// &amp;u000a = &lt;control&gt; LINE FEED</SourceLine>
+   <SourceLine>/// &amp;u000b = &lt;control&gt; VERTICAL TAB</SourceLine>
+   <SourceLine>/// &amp;u000c = &lt;contorl&gt; FORM FEED</SourceLine>
+   <SourceLine>/// &amp;u000d = &lt;control&gt; CARRIAGE RETURN</SourceLine>
+   <SourceLine>/// &amp;u0085 = &lt;control&gt; NEXT LINE</SourceLine>
+   <SourceLine>/// &amp;u00a0 = NO-BREAK SPACE</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Optimisation: Spaces are common so check them first.</SourceLine>
    <SourceLine>If s = " " Then Return True</SourceLine>
@@ -283,17 +284,16 @@
    <SourceLine>Function InitialiseCodepointCategoryDictionary() As Dictionary</SourceLine>
    <SourceLine>/// Returns a dictionary mapping unicode codepoints to unicode categories.</SourceLine>
    <SourceLine>///</SourceLine>
-   <SourceLine>/// - Notes:</SourceLine>
-   <SourceLine>/// `kUnicodeCodepointCategoryPairs` contains parsed data from the Unicode </SourceLine>
+   <SourceLine>/// `UNICODE_CODEPOINT_CATEGORY_PAIRS` contains parsed data from the Unicode </SourceLine>
    <SourceLine>/// standard where each line represents a codepoint/category pairing.</SourceLine>
-   <SourceLine>/// Each line is in the format: `codepoint:category` where `codepoint` is a </SourceLine>
-   <SourceLine>/// hex value codepoint and `category` is a two character category.</SourceLine>
+   <SourceLine>/// Each line is in the format: `codepoint:category` where `codepoint` </SourceLine>
+   <SourceLine>/// is a hex value codepoint and `category` is a two character category.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var d As New Dictionary</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>// Make sure there's no weirdness around line endings.</SourceLine>
    <SourceLine>Var keyValues() As String</SourceLine>
-   <SourceLine>keyValues = kUnicodeCodepointCategoryPairs.ReplaceLineEndings(EndOfLine.UNIX).Split(EndOfLine.UNIX)</SourceLine>
+   <SourceLine>keyValues = UNICODE_CODEPOINT_CATEGORY_PAIRS.ReplaceLineEndings(EndOfLine.UNIX).Split(EndOfLine.UNIX)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var tmp() As String</SourceLine>
    <SourceLine>Var key As Integer</SourceLine>
@@ -391,14 +391,14 @@
   <ItemName>Chop</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Removes the requested number of characters from a String.</CodeDescription>
+  <CodeDescription>Removes [numChars] characters from [s].</CodeDescription>
   <PartID>1676558335</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function Chop(s As String, numChars As Integer = 1) As String</SourceLine>
-   <SourceLine>/// Removes the specified number of characters from the passed string.</SourceLine>
-   <SourceLine>/// If `numChars` is greater than the length of the string, an empty </SourceLine>
-   <SourceLine>/// string is returned.</SourceLine>
+   <SourceLine>/// Removes [numChars] characters from [s].</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>/// If [numChars] is greater than the length of [s], "" is returned.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var length As Integer = s.Length</SourceLine>
    <SourceLine></SourceLine>
@@ -447,16 +447,18 @@
   <ItemName>IsLetterDigitOrUnderscore</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Determines whether a character is a letter or a digit.</CodeDescription>
+  <CodeDescription>Determines whether [s] is a letter, a digit or an underscore.</CodeDescription>
   <PartID>467472383</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function IsLetterDigitOrUnderscore(s As String) As Boolean</SourceLine>
-   <SourceLine>/// Determines whether a character is a letter, a digit or an underscore.</SourceLine>
-   <SourceLine>/// - Notes: Based on code from .NET core: </SourceLine>
+   <SourceLine>/// Determines whether [s] is a letter, a digit or an underscore.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>/// Based on code from .NET core: </SourceLine>
    <SourceLine>/// https://github.com/microsoft/referencesource/blob/master/mscorlib/system/char.cs</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return CheckLetterOrDigit(GetUnicodeCategory(s)) Or s = "_"</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -470,19 +472,14 @@
   <ItemName>IsLowercaseCharacter</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Returns True if the passed character is lowercase.</CodeDescription>
+  <CodeDescription>Returns True if [character] is lowercase.</CodeDescription>
   <PartID>1857341439</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function IsLowercaseCharacter(character As String) As Boolean</SourceLine>
+   <SourceLine>/// Returns True if [character] is lowercase.</SourceLine>
    <SourceLine>///</SourceLine>
-   <SourceLine>' Returns True if the passed character is lowercase.</SourceLine>
-   <SourceLine>'</SourceLine>
-   <SourceLine>' - Parameter character: The character to check.</SourceLine>
-   <SourceLine>'</SourceLine>
-   <SourceLine>' - Notes:</SourceLine>
-   <SourceLine>' Assumes that `character` is one character long.</SourceLine>
-   <SourceLine>///</SourceLine>
+   <SourceLine>/// Assumes that [character] is one character long.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If IsLatin1(character) Then</SourceLine>
    <SourceLine>If IsASCII(character) Then</SourceLine>
@@ -506,18 +503,14 @@
   <ItemName>IsASCII</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Returns True if the passed character is in the ASCII range.</CodeDescription>
+  <CodeDescription>Returns True if [character] is in the ASCII range.</CodeDescription>
   <PartID>652861439</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function IsASCII(character As String) As Boolean</SourceLine>
+   <SourceLine>/// Returns True if [character] is in the ASCII range.</SourceLine>
    <SourceLine>///</SourceLine>
-   <SourceLine>' Returns True if the passed character is in the ASCII range.</SourceLine>
-   <SourceLine>'</SourceLine>
-   <SourceLine>' - Parameter character: The character to test.</SourceLine>
-   <SourceLine>'</SourceLine>
-   <SourceLine>' - Note: Assumes that `character` is one character in length.</SourceLine>
-   <SourceLine>///</SourceLine>
+   <SourceLine>/// Assumes that [character] is one character in length.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return Asc(character) &lt;= &amp;h007F</SourceLine>
    <SourceLine></SourceLine>
@@ -534,18 +527,15 @@
   <ItemName>IsLatin1</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Returns True for if the passed character is in the ASCII or Latin-1 supplement range.</CodeDescription>
+  <CodeDescription>Returns True for if [character] is in the ASCII or Latin-1 supplement range.</CodeDescription>
   <PartID>871088127</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function IsLatin1(character As String) As Boolean</SourceLine>
-   <SourceLine>//</SourceLine>
-   <SourceLine>' Returns True for if the passed character is in the ASCII or Latin-1 supplement range.</SourceLine>
-   <SourceLine>'</SourceLine>
-   <SourceLine>' - Parameter character: The character to test.</SourceLine>
-   <SourceLine>'</SourceLine>
-   <SourceLine>' - Note: Assumes that `character` is one character in length.</SourceLine>
+   <SourceLine>/// Returns True for if [character] is in the ASCII or Latin-1 </SourceLine>
+   <SourceLine>/// supplement range.</SourceLine>
    <SourceLine>///</SourceLine>
+   <SourceLine>/// Assumes that [character] is one character in length.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return Asc(character) &lt;= &amp;h00FF</SourceLine>
    <SourceLine></SourceLine>
@@ -562,17 +552,14 @@
   <ItemName>GetLatin1UnicodeCharacter</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Returns the Unicode category for Unicode characters &lt;= 0x00ff.</CodeDescription>
+  <CodeDescription>Returns the Unicode category for Unicode characters &lt;= &amp;h00ff.</CodeDescription>
   <PartID>885233663</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function GetLatin1UnicodeCharacter(character As String) As StringKit.UnicodeCategories</SourceLine>
-   <SourceLine>/// Returns the Unicode category for Unicode characters &lt;= 0x00ff.</SourceLine>
+   <SourceLine>/// Returns the Unicode category for Unicode characters &lt;= &amp;h00ff.</SourceLine>
    <SourceLine>///</SourceLine>
-   <SourceLine>/// - [character]: The character to get the unicode category for.</SourceLine>
-   <SourceLine>///</SourceLine>
-   <SourceLine>/// - Notes:</SourceLine>
-   <SourceLine>/// - Assumes that `character` is one character long.</SourceLine>
+   <SourceLine>/// Assumes that [character] is one character long.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If Not IsLatin1(character) Then</SourceLine>
    <SourceLine>Raise New InvalidArgumentException("The Asc value of the passed " + _</SourceLine>
@@ -601,10 +588,8 @@
    <SourceLine>Function CategoryForLatin1(codePoint As Integer) As StringKit.UnicodeCategories</SourceLine>
    <SourceLine>/// Returns the Unicode category for a latin1 character.</SourceLine>
    <SourceLine>///</SourceLine>
-   <SourceLine>/// - [codePoint]: The Unicode codepoint of the character to get the </SourceLine>
-   <SourceLine>///                category for.</SourceLine>
-   <SourceLine>/// - Notes:</SourceLine>
-   <SourceLine>/// Assumes that `codePoint` is within the range U+0000 and U+00FF.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>/// Assumes that [codePoint] is within the range &amp;u0000 and &amp;u00FF.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Static latin1Categories() As StringKit.UnicodeCategories = Array(_</SourceLine>
    <SourceLine>UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, UnicodeCategories.Control, _</SourceLine>
@@ -718,7 +703,7 @@
   </ViewProperty>
  </ViewBehavior>
  <Constant>
-  <ItemName>kVersionBug</ItemName>
+  <ItemName>VERSION_BUG</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
   <PartID>1992003583</PartID>
@@ -728,7 +713,7 @@
   <ItemFlags>1</ItemFlags>
  </Constant>
  <Constant>
-  <ItemName>kVersionMajor</ItemName>
+  <ItemName>VERSION_MAJOR</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
   <PartID>1585307647</PartID>
@@ -738,7 +723,7 @@
   <ItemFlags>1</ItemFlags>
  </Constant>
  <Constant>
-  <ItemName>kVersionMinor</ItemName>
+  <ItemName>VERSION_MINOR</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
   <PartID>342374399</PartID>
@@ -748,7 +733,7 @@
   <ItemFlags>1</ItemFlags>
  </Constant>
  <Constant>
-  <ItemName>kUnicodeCodepointCategoryPairs</ItemName>
+  <ItemName>UNICODE_CODEPOINT_CATEGORY_PAIRS</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
   <PartID>363974655</PartID>
