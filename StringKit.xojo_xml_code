@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2021r1.1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2021r2" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="257574911">
  <ObjName>StringKit</ObjName>
  <ObjContainerID>0</ObjContainerID>
@@ -79,7 +79,7 @@
    <SourceLine>/// If [s] is empty or is more than one character in length then </SourceLine>
    <SourceLine>/// we return a special `None` category.</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>If s.Length &lt;&gt; 1 Then Return UnicodeCategories.None</SourceLine>
+   <SourceLine>If s = "" Then Return UnicodeCategories.None</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return CodePointCategoryDictionary.Lookup(s.Asc, UnicodeCategories.None)</SourceLine>
    <SourceLine></SourceLine>
@@ -103,7 +103,6 @@
    <SourceLine>Function IsBinaryDigit(s As String) As Boolean</SourceLine>
    <SourceLine>/// Returns True if [s] is `0` or `1`.</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>If s.Length &lt;&gt; 1 Then Return False</SourceLine>
    <SourceLine>Return If(s = "0" Or s = "1", True, False)</SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
@@ -637,6 +636,63 @@
   <ItemParams>codePoint As Integer</ItemParams>
   <ItemResult>StringKit.UnicodeCategories</ItemResult>
  </Method>
+ <Method>
+  <ItemName>IsExactly</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>True if [char] exactly matches (case-sensitive) any of the passed [characters].</CodeDescription>
+  <PartID>28325887</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsExactly(char As String, ParamArray characters() As String) As Boolean</SourceLine>
+   <SourceLine>/// True if [char] exactly matches (case-sensitive) any of the passed </SourceLine>
+   <SourceLine>/// [characters].</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>For Each c As String In characters</SourceLine>
+   <SourceLine>If char.Compare(c, ComparisonOptions.CaseSensitive) = 0 Then</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine>Next c</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>char As String, ParamArray characters() As String</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>LengthCharacters</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the number of characters in the passed string (including multibyte characters).</CodeDescription>
+  <PartID>126906367</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function LengthCharacters(Extends s As String) As Integer</SourceLine>
+   <SourceLine>/// Returns the number of characters in the passed string (including multibyte</SourceLine>
+   <SourceLine>/// characters).</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var count As Integer = 0</SourceLine>
+   <SourceLine>For Each c As String In s.Characters</SourceLine>
+   <SourceLine>count = count + 1</SourceLine>
+   <SourceLine>Next c</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends s As String</ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
  <Property>
   <ItemName>CodePointCategoryDictionary</ItemName>
   <Compatibility></Compatibility>
@@ -758,6 +814,7 @@
   <ItemName>UnicodeCategories</ItemName>
   <ItemFlags>0</ItemFlags>
   <ItemType>Integer</ItemType>
+  <BinaryEnum>0</BinaryEnum>
   <ItemName>UnicodeCategories</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>

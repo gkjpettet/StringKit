@@ -94,6 +94,14 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub LengthCharactersTest()
+		  Var s1 As String = "☺️"
+		  Assert.IsTrue(s1.LengthCharacters = 1)
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag ViewBehavior
 		#tag ViewProperty
