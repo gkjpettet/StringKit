@@ -9,7 +9,7 @@ Protected Class TestResult
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Message As Text
+		Message As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

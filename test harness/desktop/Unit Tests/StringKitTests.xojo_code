@@ -16,6 +16,57 @@ Inherits TestGroup
 
 
 	#tag Method, Flags = &h0
+		Sub CharacterArrayTest()
+		  Var s As String = "😀+☺️" + EndOfLine + "Hi"
+		  
+		  Var chars() As String = s.CharacterArray
+		  
+		  Assert.IsTrue(chars.Count = 6)
+		  Assert.IsTrue(chars(2) = "☺️")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CharacterCountTest()
+		  Var s As String
+		  
+		  s = "a️"
+		  Assert.IsTrue(s.CharacterCount = 1)
+		  
+		  s = SMILEY
+		  Assert.IsTrue(s.CharacterCount = 1)
+		  
+		  s = "ab"
+		  Assert.IsFalse(s.CharacterCount = 1)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ChopTest()
+		  Var s As String
+		  
+		  s = "Hello"
+		  Assert.IsTrue(s.Chop(3) = "He")
+		  
+		  s = "Test"
+		  Assert.IsTrue(s.Chop(0) = "")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub ContainsTest()
+		  Var s As String = "Garry Kevin John Pettet"
+		  
+		  Assert.IsTrue(s.Contains("Garry", False), "Test 1")
+		  Assert.IsTrue(s.Contains("Garry", True), "Test 1")
+		  Assert.IsFalse(s.Contains("garry", True), "Test 1")
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub GetUnicodeCategoryTest()
 		  // Passing more than one character should be the special "None" category.
 		  Assert.IsTrue(StringKit.GetUnicodeCategory("ab") = _
@@ -73,34 +124,56 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub IsChopTest()
-		  Assert.IsTrue(StringKit.Chop("Hello", 3) = "He")
-		  Assert.IsTrue(StringKit.Chop("Test", 0) = "")
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub IsDigitTest()
-		  Assert.IsTrue(StringKit.IsDigit("1"), "1")
-		  Assert.IsTrue(StringKit.IsDigit("5"), "5")
-		  Assert.IsFalse(StringKit.IsDigit("20"), "20")
-		  Assert.IsFalse(StringKit.IsDigit("2.5"), "2.5")
-		  Assert.IsFalse(StringKit.IsDigit("4e-2"), "4e-2")
-		  Assert.IsFalse(StringKit.IsDigit("a"), "a")
-		  Assert.IsFalse(StringKit.IsDigit("😀"), "😀")
-		  Assert.IsFalse(StringKit.IsDigit("hello"), "hello")
+		  Var s As String
+		  
+		  // Digits.
+		  s = "1"
+		  Assert.IsTrue(s.IsDigit, s)
+		  
+		  s = "5"
+		  Assert.IsTrue(s.IsDigit, s)
+		  
+		  // Not single digits
+		  s = "20"
+		  Assert.IsFalse(s.IsDigit, s)
+		  
+		  s = "2.5"
+		  Assert.IsFalse(s.IsDigit, s)
+		  
+		  s = "4e-2"
+		  Assert.IsFalse(s.IsDigit, s)
+		  
+		  s = "a"
+		  Assert.IsFalse(s.IsDigit, s)
+		  
+		  s = "😀"
+		  Assert.IsFalse(s.IsDigit, s)
+		  
+		  s = "hello"
+		  Assert.IsFalse(s.IsDigit, s)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub LengthCharactersTest()
-		  Var s1 As String = "☺️"
-		  Assert.IsTrue(s1.LengthCharacters = 1)
+		Sub MiddleCharactersTest()
+		  Var s As String
 		  
+		  s = "Hello"
+		  Assert.IsTrue(s.MiddleCharacters(1, 2) = "el")
+		  
+		  s = MIDDLE_TEST
+		  Assert.IsTrue(s.MiddleCharacters(1, 1) = SMILEY)
 		End Sub
 	#tag EndMethod
+
+
+	#tag Constant, Name = MIDDLE_TEST, Type = String, Dynamic = False, Default = \"0\xE2\x98\xBA\xEF\xB8\x8F2", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = SMILEY, Type = String, Dynamic = False, Default = \"\xE2\x98\xBA\xEF\xB8\x8F", Scope = Private
+	#tag EndConstant
 
 
 	#tag ViewBehavior

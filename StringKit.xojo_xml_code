@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2021r2" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2021r3" FormatVersion="2" MinIDEVersion="20210300">
 <block type="Module" ID="257574911">
  <ObjName>StringKit</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>1738569727</ObjContainerID>
  <IsClass>0</IsClass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
@@ -79,7 +79,7 @@
    <SourceLine>/// If [s] is empty or is more than one character in length then </SourceLine>
    <SourceLine>/// we return a special `None` category.</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>If s = "" Then Return UnicodeCategories.None</SourceLine>
+   <SourceLine>If s = "" Or s.CharacterCount &gt; 1 Then Return UnicodeCategories.None</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return CodePointCategoryDictionary.Lookup(s.Asc, UnicodeCategories.None)</SourceLine>
    <SourceLine></SourceLine>
@@ -96,33 +96,33 @@
   <ItemName>IsBinaryDigit</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Returns True if [s] is `0` or `1`.</CodeDescription>
+  <CodeDescription>True if [s] is `0` or `1`.</CodeDescription>
   <PartID>1577959423</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function IsBinaryDigit(s As String) As Boolean</SourceLine>
-   <SourceLine>/// Returns True if [s] is `0` or `1`.</SourceLine>
+   <SourceLine>Function IsBinaryDigit(Extends s As String) As Boolean</SourceLine>
+   <SourceLine>/// True if [s] is `0` or `1`.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Return If(s = "0" Or s = "1", True, False)</SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
+  <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>s As String</ItemParams>
+  <ItemParams>Extends s As String</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
  <Method>
   <ItemName>IsDigit</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Returns True if [s] is a single digit in the range 0-9.</CodeDescription>
+  <CodeDescription>True if [s] is a single digit in the range 0-9.</CodeDescription>
   <PartID>756819967</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function IsDigit(s As String) As Boolean</SourceLine>
-   <SourceLine>/// Returns True if [s] is a single digit in the range 0-9.</SourceLine>
+   <SourceLine>Function IsDigit(Extends s As String) As Boolean</SourceLine>
+   <SourceLine>/// True if [s] is a single digit in the range 0-9.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine>/// We could use [GetUnicodeCategory] but a `select...case` is faster.</SourceLine>
    <SourceLine></SourceLine>
@@ -137,21 +137,21 @@
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
+  <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>s As String</ItemParams>
+  <ItemParams>Extends s As String</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
  <Method>
   <ItemName>IsHexDigit</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Returns True if [s] is a valid hexadecimal digit (0-9, a-f, A-F).</CodeDescription>
+  <CodeDescription>True if [s] is a valid hexadecimal digit (0-9, a-f, A-F).</CodeDescription>
   <PartID>1465575423</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function IsHexDigit(s As String) As Boolean</SourceLine>
-   <SourceLine>/// Returns True if [s] is a valid hexadecimal digit (0-9, a-f, A-F).</SourceLine>
+   <SourceLine>Function IsHexDigit(Extends s As String) As Boolean</SourceLine>
+   <SourceLine>/// True if [s] is a valid hexadecimal digit (0-9, a-f, A-F).</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If s.Length &lt;&gt; 1 Then Return False</SourceLine>
    <SourceLine></SourceLine>
@@ -170,21 +170,21 @@
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
+  <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>s As String</ItemParams>
+  <ItemParams>Extends s As String</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
  <Method>
   <ItemName>IsLetter</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Determines whether [s] is a letter.</CodeDescription>
+  <CodeDescription>True if [s] is a letter.</CodeDescription>
   <PartID>1284841471</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function IsLetter(s As String) As Boolean</SourceLine>
-   <SourceLine>/// Determines whether [s] is a letter.</SourceLine>
+   <SourceLine>Function IsLetter(Extends s As String) As Boolean</SourceLine>
+   <SourceLine>/// True if [s] is a letter.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine>/// Based on code from .NET core: </SourceLine>
    <SourceLine>/// https://github.com/microsoft/referencesource/blob/master/mscorlib/system/char.cs</SourceLine>
@@ -194,9 +194,9 @@
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
+  <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>s As String</ItemParams>
+  <ItemParams>Extends s As String</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
  <Method>
@@ -207,7 +207,7 @@
   <PartID>2039463935</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function IsLetterOrDigit(s As String) As Boolean</SourceLine>
+   <SourceLine>Function IsLetterOrDigit(Extends s As String) As Boolean</SourceLine>
    <SourceLine>/// Determines whether [s] is a letter or a digit.</SourceLine>
    <SourceLine>/// </SourceLine>
    <SourceLine>/// Based on code from .NET core: </SourceLine>
@@ -219,21 +219,21 @@
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
+  <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>s As String</ItemParams>
+  <ItemParams>Extends s As String</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
  <Method>
   <ItemName>IsWhiteSpace</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Returns True if [s] is Unicode whitespace.</CodeDescription>
+  <CodeDescription>True if [s] is Unicode whitespace.</CodeDescription>
   <PartID>1548318719</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function IsWhiteSpace(s As String) As Boolean</SourceLine>
-   <SourceLine>/// Returns True if [s] is Unicode whitespace.</SourceLine>
+   <SourceLine>Function IsWhiteSpace(Extends s As String) As Boolean</SourceLine>
+   <SourceLine>/// True if [s] is Unicode whitespace.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine>/// Assumes [s] is a single character. [String.Asc] returns the </SourceLine>
    <SourceLine>/// codepoint for the first character in [s] so if this method is passed </SourceLine>
@@ -267,9 +267,9 @@
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
+  <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>s As String</ItemParams>
+  <ItemParams>Extends s As String</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
  <Method>
@@ -394,26 +394,26 @@
   <PartID>1676558335</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function Chop(s As String, numChars As Integer = 1) As String</SourceLine>
+   <SourceLine>Function Chop(Extends s As String, numChars As Integer = 1) As String</SourceLine>
    <SourceLine>/// Removes [numChars] characters from [s].</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine>/// If [numChars] is greater than the length of [s], "" is returned.</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>Var length As Integer = s.Length</SourceLine>
+   <SourceLine>Var length As Integer = s.CharacterCount</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If numChars &lt; 1 Or numChars &gt; length Then</SourceLine>
    <SourceLine>Return ""</SourceLine>
    <SourceLine>Else</SourceLine>
-   <SourceLine>Return s.Left(length - numChars)</SourceLine>
+   <SourceLine>Return s.LeftCharacters(length - numChars)</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
+  <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>s As String, numChars As Integer = 1</ItemParams>
+  <ItemParams>Extends s As String, numChars As Integer = 1</ItemParams>
   <ItemResult>String</ItemResult>
  </Method>
  <Method>
@@ -471,17 +471,17 @@
   <ItemName>IsLowercaseCharacter</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Returns True if [character] is lowercase.</CodeDescription>
+  <CodeDescription>True if [character] is lowercase.</CodeDescription>
   <PartID>1857341439</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function IsLowercaseCharacter(character As String) As Boolean</SourceLine>
-   <SourceLine>/// Returns True if [character] is lowercase.</SourceLine>
+   <SourceLine>Function IsLowercaseCharacter(Extends character As String) As Boolean</SourceLine>
+   <SourceLine>/// True if [character] is lowercase.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine>/// Assumes that [character] is one character long.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If IsLatin1(character) Then</SourceLine>
-   <SourceLine>If IsASCII(character) Then</SourceLine>
+   <SourceLine>If character.IsASCII Then</SourceLine>
    <SourceLine>Return Asc(character) &gt;= 97 And Asc(character) &lt;= 122</SourceLine>
    <SourceLine>End If</SourceLine>
    <SourceLine>Return GetLatin1UnicodeCharacter(character) = UnicodeCategories.LowercaseLetter</SourceLine>
@@ -493,21 +493,21 @@
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
+  <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>character As String</ItemParams>
+  <ItemParams>Extends character As String</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
  <Method>
   <ItemName>IsASCII</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
-  <CodeDescription>Returns True if [character] is in the ASCII range.</CodeDescription>
+  <CodeDescription>True if [character] is in the ASCII range.</CodeDescription>
   <PartID>652861439</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function IsASCII(character As String) As Boolean</SourceLine>
-   <SourceLine>/// Returns True if [character] is in the ASCII range.</SourceLine>
+   <SourceLine>Function IsASCII(Extends character As String) As Boolean</SourceLine>
+   <SourceLine>/// True if [character] is in the ASCII range.</SourceLine>
    <SourceLine>///</SourceLine>
    <SourceLine>/// Assumes that [character] is one character in length.</SourceLine>
    <SourceLine></SourceLine>
@@ -517,9 +517,9 @@
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
+  <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>character As String</ItemParams>
+  <ItemParams>Extends character As String</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
  <Method>
@@ -644,9 +644,10 @@
   <PartID>28325887</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function IsExactly(char As String, ParamArray characters() As String) As Boolean</SourceLine>
-   <SourceLine>/// True if [char] exactly matches (case-sensitive) any of the passed </SourceLine>
-   <SourceLine>/// [characters].</SourceLine>
+   <SourceLine>Function IsExactly(Extends char As String, ParamArray characters() As String) As Boolean</SourceLine>
+   <SourceLine>/// True if [char] exactly matches (case-sensitive) any of the passed [characters].</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>/// Assumes that [char] is a single character in length.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>For Each c As String In characters</SourceLine>
    <SourceLine>If char.Compare(c, ComparisonOptions.CaseSensitive) = 0 Then</SourceLine>
@@ -660,22 +661,21 @@
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
-  <ItemFlags>1</ItemFlags>
+  <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>char As String, ParamArray characters() As String</ItemParams>
+  <ItemParams>Extends char As String, ParamArray characters() As String</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
  <Method>
-  <ItemName>LengthCharacters</ItemName>
+  <ItemName>CharacterCount</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
   <CodeDescription>Returns the number of characters in the passed string (including multibyte characters).</CodeDescription>
   <PartID>126906367</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function LengthCharacters(Extends s As String) As Integer</SourceLine>
-   <SourceLine>/// Returns the number of characters in the passed string (including multibyte</SourceLine>
-   <SourceLine>/// characters).</SourceLine>
+   <SourceLine>Function CharacterCount(Extends s As String) As Integer</SourceLine>
+   <SourceLine>/// Returns the number of characters in the passed string (including multibyte characters).</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>Var count As Integer = 0</SourceLine>
    <SourceLine>For Each c As String In s.Characters</SourceLine>
@@ -692,6 +692,155 @@
   <IsShared>0</IsShared>
   <ItemParams>Extends s As String</ItemParams>
   <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CharacterArray</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the individual characters in [s] as an array.</CodeDescription>
+  <PartID>1342652415</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CharacterArray(Extends s As String) As String()</SourceLine>
+   <SourceLine>/// Returns the individual characters in [s] as an array.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>/// It's at least 4x faster to use `Text` to split into characters and then iterate over that array</SourceLine>
+   <SourceLine>/// than to use the native `String.Characters()` method that returns an `Iterable`.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Get the characters as a Text array.</SourceLine>
+   <SourceLine>Var tmp() As Text = s.ToText.Split</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>// Now convert each character to a string and add it to our return array.</SourceLine>
+   <SourceLine>Var chars() As String</SourceLine>
+   <SourceLine>chars.ResizeTo(tmp.LastIndex)</SourceLine>
+   <SourceLine>For i As Integer = 0 To tmp.LastIndex</SourceLine>
+   <SourceLine>chars(i) = tmp(i)</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return chars</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends s As String</ItemParams>
+  <ItemResult>String()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>LeftCharacters</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns [count] left-most characters from [s].</CodeDescription>
+  <PartID>2017161215</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function LeftCharacters(Extends s As String, count As Integer) As String</SourceLine>
+   <SourceLine>/// Returns [count] left-most characters from [s].</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var t As Text = s.ToText</SourceLine>
+   <SourceLine>Return t.Left(count)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends s As String, count As Integer</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RightCharacters</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns [count] right-most characters from [s].</CodeDescription>
+  <PartID>927242239</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function RightCharacters(Extends s As String, count As Integer) As String</SourceLine>
+   <SourceLine>/// Returns [count] right-most characters from [s].</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var t As Text = s.ToText</SourceLine>
+   <SourceLine>Return t.Right(count)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends s As String, count As Integer</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>MiddleCharacters</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns [count] characters from [s]. Handles multibyte characters like emoji.</CodeDescription>
+  <PartID>2094610431</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function MiddleCharacters(Extends s As String, start As Integer, count As Integer) As String</SourceLine>
+   <SourceLine>/// Returns [count] characters from [s]. Handles multibyte characters like emoji.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var t As Text = s.ToText</SourceLine>
+   <SourceLine>Return t.Mid(start, count)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends s As String, start As Integer, count As Integer</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>MiddleCharacters</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns all of the characters from [start] to the end of [s]. The start position is a zero-based.</CodeDescription>
+  <PartID>2001407999</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function MiddleCharacters(Extends s As String, start As Integer) As String</SourceLine>
+   <SourceLine>/// Returns all of the characters from [start] to the end of [s]. The start position is a zero-based.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var t As Text = s.ToText</SourceLine>
+   <SourceLine>Return t.Mid(start)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends s As String, start As Integer</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Contains</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>True if [s] contains [what].</CodeDescription>
+  <PartID>279681023</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function Contains(Extends s As String, what As String, caseSensitive As Boolean = False) As Boolean</SourceLine>
+   <SourceLine>/// True if [s] contains [what].</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If caseSensitive Then</SourceLine>
+   <SourceLine>Return s.IndexOf(0, what, ComparisonOptions.CaseSensitive) &lt;&gt; -1</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return s.IndexOf(0, what, ComparisonOptions.CaseInsensitive) &lt;&gt; -1</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends s As String, what As String, caseSensitive As Boolean = False</ItemParams>
+  <ItemResult>Boolean</ItemResult>
  </Method>
  <Property>
   <ItemName>CodePointCategoryDictionary</ItemName>

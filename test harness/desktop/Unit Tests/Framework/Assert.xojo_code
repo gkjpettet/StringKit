@@ -742,7 +742,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Fail(failMessage As Text, message As Text = "")
+		Sub Fail(failMessage As String, message As String = "")
 		  Failed = True
 		  Group.CurrentTestResult.Result = TestResult.Failed
 		  
@@ -767,7 +767,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub IsFalse(condition As Boolean, message As Text = "")
+		Sub IsFalse(condition As Boolean, message As String = "")
 		  If condition Then
 		    Fail("[false] expected, but was [true].", message)
 		  Else
@@ -839,7 +839,7 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub IsTrue(condition As Boolean, message As Text = "")
+		Sub IsTrue(condition As Boolean, message As String = "")
 		  If condition Then
 		    Pass()
 		  Else
@@ -868,13 +868,13 @@ Protected Class Assert
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Message(msg As Text)
+		Sub Message(msg As String)
 		  msg = msg.Trim
-		  If msg.Empty Then
+		  If msg = "" Then
 		    Return
 		  End If
 		  
-		  If Group.CurrentTestResult.Message.Empty Then
+		  If Group.CurrentTestResult.Message = "" Then
 		    Group.CurrentTestResult.Message = msg
 		  Else
 		    Group.CurrentTestResult.Message = Group.CurrentTestResult.Message + &u0A + msg
