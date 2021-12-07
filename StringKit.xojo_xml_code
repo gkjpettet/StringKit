@@ -2,7 +2,7 @@
 <RBProject version="2021r3" FormatVersion="2" MinIDEVersion="20210300">
 <block type="Module" ID="257574911">
  <ObjName>StringKit</ObjName>
- <ObjContainerID>1738569727</ObjContainerID>
+ <ObjContainerID>0</ObjContainerID>
  <IsClass>0</IsClass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
@@ -667,33 +667,6 @@
   <ItemResult>Boolean</ItemResult>
  </Method>
  <Method>
-  <ItemName>CharacterCount</ItemName>
-  <Compatibility></Compatibility>
-  <Visible>1</Visible>
-  <CodeDescription>Returns the number of characters in the passed string (including multibyte characters).</CodeDescription>
-  <PartID>126906367</PartID>
-  <ItemSource>
-   <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function CharacterCount(Extends s As String) As Integer</SourceLine>
-   <SourceLine>/// Returns the number of characters in the passed string (including multibyte characters).</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>Var count As Integer = 0</SourceLine>
-   <SourceLine>For Each c As String In s.Characters</SourceLine>
-   <SourceLine>count = count + 1</SourceLine>
-   <SourceLine>Next c</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>Return count</SourceLine>
-   <SourceLine></SourceLine>
-   <SourceLine>End Function</SourceLine>
-  </ItemSource>
-  <TextEncoding>134217984</TextEncoding>
-  <AliasName></AliasName>
-  <ItemFlags>0</ItemFlags>
-  <IsShared>0</IsShared>
-  <ItemParams>Extends s As String</ItemParams>
-  <ItemResult>Integer</ItemResult>
- </Method>
- <Method>
   <ItemName>CharacterArray</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
@@ -841,6 +814,29 @@
   <IsShared>0</IsShared>
   <ItemParams>Extends s As String, what As String, caseSensitive As Boolean = False</ItemParams>
   <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CharacterCount</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns the number of characters in the passed string (including multibyte characters).</CodeDescription>
+  <PartID>1837842431</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CharacterCount(Extends s As String) As Integer</SourceLine>
+   <SourceLine>/// Returns the number of characters in the passed string (including multibyte characters).</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var t As Text = s.ToText</SourceLine>
+   <SourceLine>Return t.Length</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends s As String</ItemParams>
+  <ItemResult>Integer</ItemResult>
  </Method>
  <Property>
   <ItemName>CodePointCategoryDictionary</ItemName>
