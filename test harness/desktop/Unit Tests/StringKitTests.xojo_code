@@ -67,6 +67,18 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub FromArrayTest()
+		  Var tmp As String = "Hello World"
+		  Var s() As String = tmp.Split("")
+		  
+		  Assert.IsTrue(StringKit.FromArray(s, 0, 5) = "Hello")
+		  Assert.IsTrue(StringKit.FromArray(s, 0) = "Hello World")
+		  Assert.IsTrue(StringKit.FromArray(s, 0, 11) = "Hello World")
+		  Assert.IsTrue(StringKit.FromArray(s, 6, 5) = "World")
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub GetUnicodeCategoryTest()
 		  // Passing more than one character should be the special "None" category.
 		  Assert.IsTrue(StringKit.GetUnicodeCategory("ab") = _
@@ -152,6 +164,37 @@ Inherits TestGroup
 		  
 		  s = "hello"
 		  Assert.IsFalse(s.IsDigit, s)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub IsUppercaseASCIICharacterTest()
+		  Var s As String
+		  
+		  s = "A"
+		  Assert.IsTrue(s.IsUppercaseASCIICharacter)
+		  
+		  s = "Z"
+		  Assert.IsTrue(s.IsUppercaseASCIICharacter)
+		  
+		  s = "a"
+		  Assert.IsFalse(s.IsUppercaseASCIICharacter)
+		  
+		  s = "z"
+		  Assert.IsFalse(s.IsUppercaseASCIICharacter)
+		  
+		  s = "ABC"
+		  Assert.IsFalse(s.IsUppercaseASCIICharacter)
+		  
+		  s = "abc"
+		  Assert.IsFalse(s.IsUppercaseASCIICharacter)
+		  
+		  s = "é"
+		  Assert.IsFalse(s.IsUppercaseASCIICharacter)
+		  
+		  s = "É"
+		  Assert.IsFalse(s.IsUppercaseASCIICharacter)
 		  
 		End Sub
 	#tag EndMethod

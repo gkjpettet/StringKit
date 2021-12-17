@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2021r3" FormatVersion="2" MinIDEVersion="20210300">
+<RBProject version="2021r3.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="257574911">
  <ObjName>StringKit</ObjName>
  <ObjContainerID>0</ObjContainerID>
@@ -837,6 +837,100 @@
   <IsShared>0</IsShared>
   <ItemParams>Extends s As String</ItemParams>
   <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsUppercaseASCIICharacter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>True if [s] is an uppercase ASCII character.</CodeDescription>
+  <PartID>342067199</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsUppercaseASCIICharacter(Extends s As String) As Boolean</SourceLine>
+   <SourceLine>/// True if [s] is an uppercase ASCII character.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If s.Length &gt; 1 Then Return False</SourceLine>
+   <SourceLine>If Not s.IsASCII Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var ucase As String = s.Uppercase</SourceLine>
+   <SourceLine>Return s.Compare(ucase, ComparisonOptions.CaseSensitive) = 0</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends s As String</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsASCIILetter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1114791935</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsASCIILetter(Extends letter As String) As Boolean</SourceLine>
+   <SourceLine>// Returns True if the [letter] is A-Z or a-z.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If letter.Length &lt;&gt; 1 Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Select Case letter.Asc</SourceLine>
+   <SourceLine>Case 65 To 90, 97 To 122</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends letter As String</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>FromArray</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns a string from [chars] beginning at index [start] for [length] characters. Assumes [chars] is an array of individual characters.</CodeDescription>
+  <PartID>171980799</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function FromArray(chars() As String, start As Integer, length As Integer = -1) As String</SourceLine>
+   <SourceLine>/// Returns a string from [chars] beginning at index [start] for [length] characters. </SourceLine>
+   <SourceLine>/// Assumes [chars] is an array of individual characters.</SourceLine>
+   <SourceLine>///</SourceLine>
+   <SourceLine>/// If `start + length` &gt; the number of remaining characters then all characters from [start] to the</SourceLine>
+   <SourceLine>/// end of [chars] are returned.</SourceLine>
+   <SourceLine>/// If [length] = `-1` then all characters from [start] to the end of [chars] are returned.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var tmp() As String</SourceLine>
+   <SourceLine>Var charsLastIndex As Integer = chars.LastIndex</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var finish As Integer</SourceLine>
+   <SourceLine>If start + length &gt; charsLastIndex Or length = -1 Then</SourceLine>
+   <SourceLine>finish = charsLastIndex</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>finish = start + length - 1</SourceLine>
+   <SourceLine>End If</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>For i As Integer = start To finish</SourceLine>
+   <SourceLine>tmp.Add(chars(i))</SourceLine>
+   <SourceLine>Next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return String.FromArray(tmp, "")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>chars() As String, start As Integer, length As Integer = -1</ItemParams>
+  <ItemResult>String</ItemResult>
  </Method>
  <Property>
   <ItemName>CodePointCategoryDictionary</ItemName>
