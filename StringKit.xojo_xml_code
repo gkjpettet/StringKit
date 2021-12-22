@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2021r3.1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2021r3.1" FormatVersion="2" MinIDEVersion="20210300">
 <block type="Module" ID="257574911">
  <ObjName>StringKit</ObjName>
- <ObjContainerID>0</ObjContainerID>
+ <ObjContainerID>857714687</ObjContainerID>
  <IsClass>0</IsClass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
@@ -867,11 +867,12 @@
   <ItemName>IsASCIILetter</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <CodeDescription>Returns True if the [letter] is A-Z or a-z.</CodeDescription>
   <PartID>1114791935</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function IsASCIILetter(Extends letter As String) As Boolean</SourceLine>
-   <SourceLine>// Returns True if the [letter] is A-Z or a-z.</SourceLine>
+   <SourceLine>/// Returns True if the [letter] is A-Z or a-z.</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>If letter.Length &lt;&gt; 1 Then Return False</SourceLine>
    <SourceLine></SourceLine>
@@ -931,6 +932,64 @@
   <IsShared>0</IsShared>
   <ItemParams>chars() As String, start As Integer, length As Integer = -1</ItemParams>
   <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsASCIILetterOrDigit</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the [letter] is A-Z, a-z or 0-9</CodeDescription>
+  <PartID>728109055</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsASCIILetterOrDigit(Extends letter As String) As Boolean</SourceLine>
+   <SourceLine>/// Returns True if the [letter] is A-Z, a-z or 0-9</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If letter.Length &lt;&gt; 1 Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Select Case letter.Asc</SourceLine>
+   <SourceLine>Case 48 To 57, 65 To 90, 97 To 122</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends letter As String</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsASCIILetterOrDigitOrHyphen</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the [letter] is A-Z, a-z, 0-9 or "-"</CodeDescription>
+  <PartID>1132783615</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsASCIILetterOrDigitOrHyphen(Extends letter As String) As Boolean</SourceLine>
+   <SourceLine>/// Returns True if the [letter] is A-Z, a-z, 0-9 or "-"</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If letter.Length &lt;&gt; 1 Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Select Case letter.Asc</SourceLine>
+   <SourceLine>Case 48 To 57, 65 To 90, 97 To 122, 45</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends letter As String</ItemParams>
+  <ItemResult>Boolean</ItemResult>
  </Method>
  <Property>
   <ItemName>CodePointCategoryDictionary</ItemName>
