@@ -991,6 +991,31 @@
   <ItemParams>Extends letter As String</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
+ <Method>
+  <ItemName>IsUppercaseASCIILetter</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>True if [s] is an uppercase ASCII letter.</CodeDescription>
+  <PartID>1631590399</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsUppercaseASCIILetter(Extends s As String) As Boolean</SourceLine>
+   <SourceLine>/// True if [s] is an uppercase ASCII letter.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If s.Length &gt; 1 Then Return False</SourceLine>
+   <SourceLine>If Not s.IsASCIILetter Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Var ucase As String = s.Uppercase</SourceLine>
+   <SourceLine>Return s.Compare(ucase, ComparisonOptions.CaseSensitive) = 0</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends s As String</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
  <Property>
   <ItemName>CodePointCategoryDictionary</ItemName>
   <Compatibility></Compatibility>
