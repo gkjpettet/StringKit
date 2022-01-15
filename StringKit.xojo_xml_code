@@ -1045,6 +1045,35 @@
   <ItemParams>Extends letter As String</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
+ <Method>
+  <ItemName>IsASCIILetterOrDigitOrUnderscore</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>Returns True if the [letter] is A-Z, a-z, 0-9 or the underscore.</CodeDescription>
+  <PartID>2146783231</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsASCIILetterOrDigitOrUnderscore(Extends letter As String) As Boolean</SourceLine>
+   <SourceLine>/// Returns True if the [letter] is A-Z, a-z, 0-9 or the underscore.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If letter.Length &lt;&gt; 1 Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Select Case letter.Asc</SourceLine>
+   <SourceLine>Case 48 To 57, 65 To 90, 97 To 122, 95</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends letter As String</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
  <Property>
   <ItemName>CodePointCategoryDictionary</ItemName>
   <Compatibility></Compatibility>
