@@ -1095,6 +1095,27 @@
   <ItemParams>Extends character As String</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
+ <Method>
+  <ItemName>IsSpaceOrTabOrNewline</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>True if [character] is a space, horizontal tab or UNIX newline (&amp;u0A).</CodeDescription>
+  <PartID>1543233535</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsSpaceOrTabOrNewline(Extends character As String) As Boolean</SourceLine>
+   <SourceLine>/// True if [character] is a space, horizontal tab or UNIX newline (&amp;u0A).</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return character = " " Or character = &amp;u0009 Or character = &amp;u0A</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends character As String</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
  <Property>
   <ItemName>CodePointCategoryDictionary</ItemName>
   <Compatibility></Compatibility>
