@@ -2,7 +2,7 @@
 <RBProject version="2021r3.1" FormatVersion="2" MinIDEVersion="20210300">
 <block type="Module" ID="257574911">
  <ObjName>StringKit</ObjName>
- <ObjContainerID>857714687</ObjContainerID>
+ <ObjContainerID>99203071</ObjContainerID>
  <IsClass>0</IsClass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
@@ -1072,6 +1072,27 @@
   <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
   <ItemParams>Extends letter As String</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsSpaceOrTab</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>True if [character] is a space or horizontal tab.</CodeDescription>
+  <PartID>1665701887</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsSpaceOrTab(Extends character As String) As Boolean</SourceLine>
+   <SourceLine>/// True if [character] is a space or horizontal tab.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Return character = " " Or character = &amp;u0009</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends character As String</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
  <Property>
