@@ -2,7 +2,7 @@
 <RBProject version="2021r3.1" FormatVersion="2" MinIDEVersion="20210300">
 <block type="Module" ID="257574911">
  <ObjName>StringKit</ObjName>
- <ObjContainerID>99203071</ObjContainerID>
+ <ObjContainerID>1738569727</ObjContainerID>
  <IsClass>0</IsClass>
  <ItemFlags>1</ItemFlags>
  <IsInterface>0</IsInterface>
@@ -1114,6 +1114,35 @@
   <ItemFlags>0</ItemFlags>
   <IsShared>0</IsShared>
   <ItemParams>Extends character As String</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsOctalDigit</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <CodeDescription>True if [s] is a valid octal digit (0-7)</CodeDescription>
+  <PartID>933150719</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function IsOctalDigit(Extends s As String) As Boolean</SourceLine>
+   <SourceLine>/// True if [s] is a valid octal digit (0-7)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>If s.Length &lt;&gt; 1 Then Return False</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>Select Case s.Asc</SourceLine>
+   <SourceLine>Case 48 To 55 // 0-7</SourceLine>
+   <SourceLine>Return True</SourceLine>
+   <SourceLine>Else</SourceLine>
+   <SourceLine>Return False</SourceLine>
+   <SourceLine>End Select</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>Extends s As String</ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
  <Property>
