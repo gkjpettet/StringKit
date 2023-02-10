@@ -1,5 +1,6 @@
 #tag Toolbar
 Begin Toolbar UnitTestsToolbar
+Inherits Toolbar
 	Begin ToolButton RunButton
 		Caption = "Run Tests"
 		HelpTag = ""

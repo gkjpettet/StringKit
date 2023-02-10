@@ -862,7 +862,6 @@ Begin Window UnitTestsWindow
    Begin DesktopTestController Controller
       AllTestCount    =   0
       Duration        =   0.0
-      Enabled         =   True
       FailedCount     =   0
       GroupCount      =   0
       Index           =   -2147483648
@@ -914,28 +913,28 @@ End
 
 	#tag MenuHandler
 		Function EditSelectAllGroups() As Boolean Handles EditSelectAllGroups.Action
-			SelectAllGroups(True, False)
-			
-			Return True
-			
+		  SelectAllGroups(True, False)
+		  
+		  Return True
+		  
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function EditUnselectAllGroups() As Boolean Handles EditUnselectAllGroups.Action
-			SelectAllGroups(False, False)
-			
-			Return True
-			
+		  SelectAllGroups(False, False)
+		  
+		  Return True
+		  
 		End Function
 	#tag EndMenuHandler
 
 	#tag MenuHandler
 		Function FileRunTests() As Boolean Handles FileRunTests.Action
-			RunTests
-			
-			Return True
-			
+		  RunTests
+		  
+		  Return True
+		  
 		End Function
 	#tag EndMenuHandler
 
@@ -1424,24 +1423,6 @@ End
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Function CellBackgroundPaint(g As Graphics, row As Integer, column As Integer) As Boolean
-		  #Pragma Unused column
-		  
-		  #If TargetMacOS Then
-		    If row Mod 2 = 0 And Not Me.Selected(row) Then
-		      g.ForeColor = RGB(237, 243, 254) '&cD0D4FF
-		      g.FillRect(0, 0, g.Width, g.Height)
-		    End If
-		    
-		    Return True
-		  #Else
-		    #Pragma Unused g
-		    #Pragma Unused row
-		  #Endif
-		  
-		End Function
-	#tag EndEvent
-	#tag Event
 		Function ContextualMenuAction(hitItem as MenuItem) As Boolean
 		  Select Case hitItem.Text
 		  Case kCMSelectAllGroups
@@ -1563,13 +1544,30 @@ End
 		  #Pragma Unused x
 		  #Pragma Unused y
 		  
-		  If Me.Cell(row, ColResult) = TestResult.Failed Then
-		    g.ForeColor = &cFF0000
-		    g.Bold = True
-		  Else
-		    g.ForeColor = &c000000
-		    g.Bold = False
+		  Const kRedColor As Color = &cFF000000
+		  Static kGreyColor As Color = Color.DisabledTextColor // Pseudo-constant
+		  Var normalColor As Color = If(Color.IsDarkMode, Color.White, Color.Black)
+		  
+		  If Me.RowTagAt(row) IsA TestResult Then
+		    
+		    Var tr As TestResult = Me.RowTagAt(row)
+		    
+		    If tr.Result = TestResult.Failed Then
+		      g.DrawingColor = kRedColor
+		      g.Bold = True
+		      
+		    Else
+		      If tr.Result = TestResult.NotImplemented Then
+		        g.DrawingColor = kGreyColor
+		      Else
+		        g.DrawingColor = normalColor
+		      End If
+		      g.Bold = Not tr.Message.IsEmpty
+		      
+		    End If
+		    
 		  End If
+		  
 		End Function
 	#tag EndEvent
 #tag EndEvents
